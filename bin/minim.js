@@ -17,6 +17,11 @@ switch (cmd) {
     run(args);
     break;
   }
+  case 'mem': {
+    const { run } = await import('../src/cli/mem.js');
+    run(args);
+    break;
+  }
   default:
     console.error(`minim: unknown command "${cmd ?? ''}"\nusage: minim hook <Event>`);
     process.exit(1);
