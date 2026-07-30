@@ -5,6 +5,8 @@ import { readStdinJson, respond, field } from './hookio.js';
 // Handler modules register here as tasks land. Each exports handle(input) -> object|undefined.
 export const handlers = {
   SessionStart: () => import('./hooks/sessionstart.js'),
+  UserPromptSubmit: () => import('./hooks/userprompt.js'),
+  Stop: () => import('./hooks/stop.js'),
 };
 
 export async function run(event) {
