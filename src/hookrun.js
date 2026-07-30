@@ -9,6 +9,7 @@ export const handlers = {
   Stop: () => import('./hooks/stop.js'),
   PreCompact: () => import('./hooks/precompact.js'),
   PreToolUse: () => import('./hooks/pretooluse.js'),
+  PostToolUse: () => import('./hooks/posttooluse.js'),
 };
 
 export async function run(event) {
