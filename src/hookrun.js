@@ -3,7 +3,9 @@ import { join } from 'node:path';
 import { readStdinJson, respond, field } from './hookio.js';
 
 // Handler modules register here as tasks land. Each exports handle(input) -> object|undefined.
-export const handlers = {};
+export const handlers = {
+  SessionStart: () => import('./hooks/sessionstart.js'),
+};
 
 export async function run(event) {
   const input = await readStdinJson();

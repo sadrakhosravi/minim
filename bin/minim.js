@@ -7,6 +7,11 @@ switch (cmd) {
     await run(args[0]);
     break;
   }
+  case 'budget': {
+    const { run } = await import('../src/cli/budget.js');
+    run(args);
+    break;
+  }
   default:
     console.error(`minim: unknown command "${cmd ?? ''}"\nusage: minim hook <Event>`);
     process.exit(1);
