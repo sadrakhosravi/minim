@@ -7,6 +7,7 @@ export const handlers = {
   SessionStart: () => import('./hooks/sessionstart.js'),
   UserPromptSubmit: () => import('./hooks/userprompt.js'),
   Stop: () => import('./hooks/stop.js'),
+  PreCompact: () => import('./hooks/precompact.js'),
 };
 
 export async function run(event) {
