@@ -8,6 +8,7 @@ export const handlers = {
   UserPromptSubmit: () => import('./hooks/userprompt.js'),
   Stop: () => import('./hooks/stop.js'),
   PreCompact: () => import('./hooks/precompact.js'),
+  PreToolUse: () => import('./hooks/pretooluse.js'),
 };
 
 export async function run(event) {
