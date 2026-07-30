@@ -1,0 +1,22 @@
+{
+  "hooks": {
+    "SessionStart": [
+      { "type": "command", "command": "node .minim/runtime/bin/minim.js hook SessionStart" }
+    ],
+    "UserPromptSubmit": [
+      { "type": "command", "command": "node .minim/runtime/bin/minim.js hook UserPromptSubmit" }
+    ],
+    "PreToolUse": [
+      { "type": "command", "command": "node .minim/runtime/bin/minim.js hook PreToolUse" }
+    ],
+    "PostToolUse": [
+      { "type": "command", "command": "node .minim/runtime/bin/minim.js hook PostToolUse" }
+    ],
+    "PreCompact": [
+      { "type": "command", "command": "node .minim/runtime/bin/minim.js hook PreCompact" }
+    ],
+    "Stop": [
+      { "type": "command", "command": "node .minim/runtime/bin/minim.js hook Stop" }
+    ]
+  }
+}
