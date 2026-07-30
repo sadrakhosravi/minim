@@ -22,6 +22,11 @@ switch (cmd) {
     run(args);
     break;
   }
+  case 'pack': {
+    const { run } = await import('../src/cli/pack.js');
+    run(args);
+    break;
+  }
   default:
     console.error(`minim: unknown command "${cmd ?? ''}"\nusage: minim hook <Event>`);
     process.exit(1);
