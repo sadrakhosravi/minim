@@ -10,7 +10,28 @@
   "categories": ["AI", "Other"],
   "main": "./dist/extension.cjs",
   "activationEvents": ["workspaceContains:.minim/config.json"],
-  "contributes": {},
+  "contributes": {
+    "languageModelTools": [
+      {
+        "name": "minim_memory",
+        "displayName": "Search project decisions",
+        "modelDescription": "Search this project's recorded architecture decisions, constraints and gotchas. Call this BEFORE exploring the codebase when planning non-trivial work — it replaces reading files.",
+        "canBeReferencedInPrompt": true,
+        "toolReferenceName": "minimMemory",
+        "icon": "$(book)",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Keywords describing the task or subsystem."
+            }
+          },
+          "required": ["query"]
+        }
+      }
+    ]
+  },
   "scripts": {
     "build": "node scripts/copy-assets.mjs && esbuild src/extension.ts --bundle --platform=node --format=cjs --target=node20 --external:vscode --outfile=dist/extension.cjs",
     "package": "vsce package --no-dependencies --out minim-vscode.vsix",
