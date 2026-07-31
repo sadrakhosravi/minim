@@ -4,6 +4,7 @@ export async function run() {
   const suites = [
     await import('./activation.test.mjs'),
     await import('./tools.test.mjs'),
+    await import('./commands.test.mjs'),
   ];
   const failures = [];
   for (const suite of suites) {

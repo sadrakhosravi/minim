@@ -5,6 +5,7 @@ import { RememberTool } from './tools/remember.ts';
 import { createStatusBar } from './statusbar.ts';
 import { createDiagnostics } from './diagnostics.ts';
 import { watchInstructionFiles } from './watch.ts';
+import { registerCommands } from './commands.ts';
 
 export function activate(context: vscode.ExtensionContext): void {
   initLog(context);
@@ -24,6 +25,7 @@ export function activate(context: vscode.ExtensionContext): void {
     };
     watchInstructionFiles(context, refresh);
     refresh();
+    registerCommands(context, refresh);
 
     log('minim activated');
   } catch (e) {

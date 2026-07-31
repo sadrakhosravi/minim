@@ -48,6 +48,14 @@
           "required": ["fact"]
         }
       }
+    ],
+    "commands": [
+      { "command": "minim.init", "title": "Install config pack in this workspace", "category": "minim" },
+      { "command": "minim.pack", "title": "Pack files into a prompt file", "category": "minim" },
+      { "command": "minim.budget", "title": "Check instruction-file budgets", "category": "minim" },
+      { "command": "minim.stats", "title": "Show usage stats", "category": "minim" },
+      { "command": "minim.mem.list", "title": "Open recorded decisions", "category": "minim" },
+      { "command": "minim.mem.compact", "title": "Archive old decisions", "category": "minim" }
     ]
   },
   "scripts": {
