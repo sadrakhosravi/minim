@@ -14,7 +14,7 @@
 
 ## Memory protocol
 
-- Project decisions live in `.minim/memory/decisions.md`. When planning non-trivial work, read it first — it replaces re-exploring the codebase.
-- When you make or learn a durable decision (architecture choice, constraint, gotcha), emit a single line in your response: `MINIM-NOTE: <the fact>`. Keep it under 20 words. It is saved automatically.
-- Do not re-state facts already in `.minim/memory/decisions.md`.
+- Before planning non-trivial work, search prior decisions with the `minim_memory` tool (referenceable as `#minimMemory`). It replaces re-exploring the codebase. If that tool is unavailable, read `.minim/memory/decisions.md` instead.
+- When you make or learn a durable decision (architecture choice, constraint, gotcha), record it with the `minim_remember` tool. Keep it under 20 words. If that tool is unavailable, emit a single line `MINIM-NOTE: <the fact>` in your response instead — it is scraped automatically.
+- Do not re-state facts already recorded.
 <!-- minim:end -->

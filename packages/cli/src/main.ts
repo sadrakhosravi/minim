@@ -3,6 +3,7 @@ import { run as budget } from './cli/budget.ts';
 import { run as stats } from './cli/stats.ts';
 import { run as mem } from './cli/mem.ts';
 import { run as pack } from './cli/pack.ts';
+import { run as init } from './cli/init.ts';
 
 const [cmd, ...args] = process.argv.slice(2);
 
@@ -21,6 +22,9 @@ switch (cmd) {
     break;
   case 'pack':
     pack(args);
+    break;
+  case 'init':
+    init();
     break;
   default:
     console.error(
