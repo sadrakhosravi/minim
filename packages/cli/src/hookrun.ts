@@ -3,11 +3,20 @@ import { join } from 'node:path';
 import { pick } from '../../core/src/types.ts';
 import type { HookOutput } from '../../core/src/types.ts';
 import { readStdinJson, respond } from './hookio.ts';
+import { handle as sessionStart } from './hooks/sessionstart.ts';
+import { handle as userPromptSubmit } from './hooks/userprompt.ts';
+import { handle as preToolUse } from './hooks/pretooluse.ts';
 
 export type HookHandler = (input: unknown) => Promise<HookOutput | undefined>;
 
-// Handlers register here as tasks land.
-export const handlers: Partial<Record<string, HookHandler>> = {};
+// Static imports rather than v0.1.0's lazy `() => import(...)`: everything lands
+// in one bundled file, so lazy loading buys nothing. scripts/bench-hook.mjs
+// verifies cold start did not regress.
+export const handlers: Partial<Record<string, HookHandler>> = {
+  SessionStart: sessionStart,
+  UserPromptSubmit: userPromptSubmit,
+  PreToolUse: preToolUse,
+};
 
 export async function run(event: string): Promise<void> {
   const input = await readStdinJson();
