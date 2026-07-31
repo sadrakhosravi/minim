@@ -1,0 +1,19 @@
+{
+  "name": "minim-vscode",
+  "displayName": "minim",
+  "description": "Cut GitHub Copilot token spend: agent-callable project memory, instruction-file budgets, context packing",
+  "version": "0.2.0",
+  "publisher": "sadrakhosravi",
+  "license": "MIT",
+  "type": "module",
+  "engines": { "vscode": "^1.109.0" },
+  "categories": ["AI", "Other"],
+  "main": "./dist/extension.cjs",
+  "activationEvents": ["workspaceContains:.minim/config.json"],
+  "contributes": {},
+  "scripts": {
+    "build": "node scripts/copy-assets.mjs && esbuild src/extension.ts --bundle --platform=node --format=cjs --target=node20 --external:vscode --outfile=dist/extension.cjs",
+    "package": "vsce package --no-dependencies --out minim-vscode.vsix",
+    "test:ext": "node test/runTest.mjs"
+  }
+}
