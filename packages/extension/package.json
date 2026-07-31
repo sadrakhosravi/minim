@@ -1,0 +1,67 @@
+{
+  "name": "minim-vscode",
+  "displayName": "minim",
+  "description": "Cut GitHub Copilot token spend: agent-callable project memory, instruction-file budgets, context packing",
+  "version": "0.2.0",
+  "publisher": "sadrakhosravi",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/sadrakhosravi/minim.git", "directory": "packages/extension" },
+  "type": "module",
+  "engines": { "vscode": "^1.109.0" },
+  "categories": ["AI", "Other"],
+  "main": "./dist/extension.cjs",
+  "activationEvents": ["workspaceContains:.minim/config.json"],
+  "contributes": {
+    "languageModelTools": [
+      {
+        "name": "minim_memory",
+        "displayName": "Search project decisions",
+        "modelDescription": "Search this project's recorded architecture decisions, constraints and gotchas. Call this BEFORE exploring the codebase when planning non-trivial work — it replaces reading files.",
+        "canBeReferencedInPrompt": true,
+        "toolReferenceName": "minimMemory",
+        "icon": "$(book)",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Keywords describing the task or subsystem."
+            }
+          },
+          "required": ["query"]
+        }
+      },
+      {
+        "name": "minim_remember",
+        "displayName": "Record a project decision",
+        "modelDescription": "Persist one durable decision, constraint or gotcha, under 20 words. Do not record transient state or facts already recorded.",
+        "canBeReferencedInPrompt": true,
+        "toolReferenceName": "minimRemember",
+        "icon": "$(pin)",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "fact": {
+              "type": "string",
+              "description": "The durable fact, under 20 words."
+            }
+          },
+          "required": ["fact"]
+        }
+      }
+    ],
+    "commands": [
+      { "command": "minim.init", "title": "Install config pack in this workspace", "category": "minim" },
+      { "command": "minim.pack", "title": "Pack files into a prompt file", "category": "minim" },
+      { "command": "minim.budget", "title": "Check instruction-file budgets", "category": "minim" },
+      { "command": "minim.stats", "title": "Show usage stats", "category": "minim" },
+      { "command": "minim.mem.list", "title": "Open recorded decisions", "category": "minim" },
+      { "command": "minim.mem.compact", "title": "Archive old decisions", "category": "minim" }
+    ]
+  },
+  "scripts": {
+    "build": "node scripts/copy-assets.mjs && esbuild src/extension.ts --bundle --platform=node --format=cjs --target=node20 --external:vscode --outfile=dist/extension.cjs",
+    "package": "vsce package --no-dependencies --out minim-vscode.vsix",
+    "test:ext": "node test/runTest.mjs"
+  }
+}

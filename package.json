@@ -1,10 +1,30 @@
 {
-  "name": "minim-copilot",
-  "version": "0.1.0",
-  "description": "Token-efficiency toolkit for GitHub Copilot in VS Code: memory, budgets, guards, metrics",
+  "name": "minim-workspace",
+  "version": "0.2.0",
+  "description": "Token-efficiency toolkit for GitHub Copilot in VS Code",
+  "private": true,
+  "repository": { "type": "git", "url": "git+https://github.com/sadrakhosravi/minim.git" },
   "type": "module",
-  "bin": { "minim": "bin/minim.js" },
-  "engines": { "node": ">=20" },
-  "scripts": { "test": "node --test" },
-  "license": "MIT"
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "npm run build --workspaces --if-present && node --test \"packages/*/test/*.test.ts\"",
+    "build": "npm run build --workspaces --if-present",
+    "bench": "npm run build --workspaces --if-present && node scripts/bench-hook.mjs",
+    "check:node20": "node scripts/check-node20.mjs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.20.1",
+    "@types/vscode": "~1.109.0",
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.9.2",
+    "esbuild": "^0.28.1",
+    "typescript": "^5.9.3"
+  }
 }
