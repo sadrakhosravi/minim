@@ -2,3 +2,4 @@ node_modules/
 .minim/metrics/
 .minim/snapshots/
 .minim/debug/
+packages/*/dist/

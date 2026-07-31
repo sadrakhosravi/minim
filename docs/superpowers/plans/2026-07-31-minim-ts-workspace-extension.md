@@ -152,9 +152,11 @@ Create `tsconfig.json`:
 ```json
 {
   "extends": "./tsconfig.base.json",
-  "include": ["packages/*/src/**/*.ts", "packages/*/test/**/*.ts", "scripts/**/*.mjs"]
+  "include": ["packages/*/src/**/*.ts", "packages/*/test/**/*.ts"]
 }
 ```
+
+`scripts/**/*.mjs` is deliberately excluded. Including plain JavaScript without `allowJs: true` fails with `TS6504: File is a JavaScript file. Did you mean to enable the 'allowJs' option?`, and enabling `allowJs` just to lint two build scripts is not worth the config surface.
 
 - [ ] **Step 3: Install the toolchain**
 
