@@ -14,7 +14,8 @@
     "typecheck": "tsc -p tsconfig.json",
     "test": "npm run build --workspaces --if-present && node --test \"packages/*/test/*.test.ts\"",
     "build": "npm run build --workspaces --if-present",
-    "bench": "node scripts/bench-hook.mjs"
+    "bench": "npm run build --workspaces --if-present && node scripts/bench-hook.mjs",
+    "check:node20": "node scripts/check-node20.mjs"
   },
   "license": "MIT",
   "devDependencies": {
