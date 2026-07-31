@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "description": "Token-efficiency toolkit for GitHub Copilot in VS Code",
   "private": true,
+  "repository": { "type": "git", "url": "git+https://github.com/sadrakhosravi/minim.git" },
   "type": "module",
   "workspaces": [
     "packages/*"

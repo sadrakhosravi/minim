@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "description": "Token-efficiency toolkit for GitHub Copilot in VS Code: memory, budgets, guards, metrics",
   "type": "module",
+  "repository": { "type": "git", "url": "git+https://github.com/sadrakhosravi/minim.git", "directory": "packages/cli" },
   "bin": { "minim": "bin/minim.js" },
   "files": ["bin", "dist", "templates"],
   "engines": { "node": ">=20" },

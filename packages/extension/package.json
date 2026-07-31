@@ -5,6 +5,7 @@
   "version": "0.2.0",
   "publisher": "sadrakhosravi",
   "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/sadrakhosravi/minim.git", "directory": "packages/extension" },
   "type": "module",
   "engines": { "vscode": "^1.109.0" },
   "categories": ["AI", "Other"],
