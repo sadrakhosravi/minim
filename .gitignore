@@ -5,3 +5,4 @@ node_modules/
 packages/*/dist/
 packages/extension/assets/
 *.vsix
+.vscode-test/
