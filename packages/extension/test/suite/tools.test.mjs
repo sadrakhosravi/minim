@@ -30,4 +30,31 @@ export const tests = [
       assert.ok(textOf(result).length > 0, 'tool returned no text');
     },
   ],
+  [
+    'minim_remember is registered',
+    async () => {
+      await vscode.extensions.getExtension(EXT_ID).activate();
+      assert.ok(vscode.lm.tools.find((t) => t.name === 'minim_remember'));
+    },
+  ],
+  [
+    'minim_remember persists a fact and minim_memory reads it back',
+    async () => {
+      await vscode.extensions.getExtension(EXT_ID).activate();
+      const fact = `test fact ${vscode.env.sessionId}`;
+      const written = await vscode.lm.invokeTool('minim_remember', {
+        input: { fact },
+        toolInvocationToken: undefined,
+      });
+      assert.match(textOf(written), /Recorded/);
+
+      // Round trip: write through one tool, read back through the other. This is
+      // the only assertion that proves both tools agree on where memory lives.
+      const found = await vscode.lm.invokeTool('minim_memory', {
+        input: { query: fact },
+        toolInvocationToken: undefined,
+      });
+      assert.match(textOf(found), /test fact/);
+    },
+  ],
 ];

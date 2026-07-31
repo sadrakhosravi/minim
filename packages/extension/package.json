@@ -29,6 +29,24 @@
           },
           "required": ["query"]
         }
+      },
+      {
+        "name": "minim_remember",
+        "displayName": "Record a project decision",
+        "modelDescription": "Persist one durable decision, constraint or gotcha, under 20 words. Do not record transient state or facts already recorded.",
+        "canBeReferencedInPrompt": true,
+        "toolReferenceName": "minimRemember",
+        "icon": "$(pin)",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "fact": {
+              "type": "string",
+              "description": "The durable fact, under 20 words."
+            }
+          },
+          "required": ["fact"]
+        }
       }
     ]
   },
