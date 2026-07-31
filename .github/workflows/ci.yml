@@ -1,0 +1,57 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Test
+        run: npm test
+      - name: Cold-start benchmark
+        run: npm run bench
+
+  node20-compat:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci
+      # Building requires Node 24; running the compiled bundle must work on 20.
+      - name: Build the bundle on 24
+        run: npm run build --workspaces --if-present
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run the compiled bundle on 20
+        run: npm run check:node20
+
+  extension:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci
+      - run: npm run build --workspaces --if-present
+      - name: Extension host tests
+        run: xvfb-run -a npm run test:ext -w minim-vscode
+      - name: Package VSIX
+        run: npm run package -w minim-vscode
+      - uses: actions/upload-artifact@v4
+        with:
+          name: minim-vscode-vsix
+          path: packages/extension/minim-vscode.vsix
